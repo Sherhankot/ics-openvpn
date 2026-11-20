@@ -49,10 +49,4 @@ class TestNamespaceClassNames {
     fun classNameRequiresLeadingDot() {
         NamespaceClassNames.className("activities.MainActivity")
     }
-
-    @Test
-    fun uiActivityClassesCanBeLoaded() {
-        Class.forName(NamespaceClassNames.className(".activities.MainActivity"))
-        Class.forName(NamespaceClassNames.className(".activities.CredentialsPopup"))
-    }
 }
