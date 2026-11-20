@@ -140,8 +140,13 @@ android {
                 logger.warn("property icsopenvpnDebugSign set, using debug signing for release")
                 signingConfig = android.signingConfigs.getByName("debug")
             } else {
-                productFlavors["ovpn23"].signingConfig = signingConfigs.getByName("release")
-                productFlavors["ovpn2"].signingConfig = signingConfigs.getByName("releaseOvpn2")
+                // Signing is done outside Gradle; without the keystore properties the release APK is left unsigned.
+                if (project.hasProperty("keystoreFile")) {
+                    productFlavors["ovpn23"].signingConfig = signingConfigs.getByName("release")
+                }
+                if (project.hasProperty("keystoreO2File")) {
+                    productFlavors["ovpn2"].signingConfig = signingConfigs.getByName("releaseOvpn2")
+                }
             }
 
             optimization {
