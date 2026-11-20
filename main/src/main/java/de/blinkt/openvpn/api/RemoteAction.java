@@ -19,6 +19,7 @@ import android.widget.Toast;
 import de.blinkt.openvpn.LaunchVPN;
 import de.blinkt.openvpn.VpnProfile;
 import de.blinkt.openvpn.core.IOpenVPNServiceInternal;
+import de.blinkt.openvpn.core.NamespaceClassNames;
 import de.blinkt.openvpn.core.OpenVPNService;
 import de.blinkt.openvpn.core.Preferences;
 import de.blinkt.openvpn.core.ProfileManager;
@@ -105,7 +106,8 @@ public class RemoteAction extends Activity {
             return;
 
 
-        switch (component.getShortClassName()) {
+        // getShortClassName() is short only when the class is inside the application package.
+        switch (NamespaceClassNames.relativeName(component.getClassName())) {
             case ".api.DisconnectVPN":
                 mService.stopVPN(false);
                 break;
