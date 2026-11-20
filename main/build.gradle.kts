@@ -33,6 +33,8 @@ android {
     ndkVersion = "30.0.14904198"
 
     defaultConfig {
+        // own id so the build installs next to the stock app; namespace (R and BuildConfig package) stays de.blinkt.openvpn.
+        applicationId = "ru.arogaz.openvpn"
         minSdk = 23
         targetSdk = 37
         //targetSdkPreview = "UpsideDownCake"
