@@ -527,9 +527,10 @@ class VPNProfileList : ListFragment(), View.OnClickListener, StateListener {
 
     private fun editVPN(profile: VpnProfile) {
         mEditProfile = profile
+        // The key is independent of applicationId and is also read by onActivityResult.
         val vprefintent = Intent(getActivity(), VPNPreferences::class.java)
             .putExtra(
-                getActivity()!!.getPackageName() + ".profileUUID",
+                VpnProfile.EXTRA_PROFILEUUID,
                 profile.getUUID().toString()
             )
 
